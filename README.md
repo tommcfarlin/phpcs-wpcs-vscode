@@ -84,7 +84,7 @@ For the purposes of this document, we're installing PHP CodeSniffer on a project
 From the integrated terminal within Visual Studio Code, enter the following command:
 
 ```
-$ composer require "squizlabs/php_codesniffer=*"
+$ composer require "squizlabs/php_codesniffer=2.*"
 ```
 
 This will create `composer.json`, tell it where to locate the PHP CodeSniffer, and install it in a `vendor` directory. Once this is done, we need the WordPress Coding Standard ruleset.
