@@ -99,7 +99,7 @@ From within your directory of choice, say `dropbox/projects`, enter the followin
 $ composer create-project wp-coding-standards/wpcs:dev-master --no-dev
 ```
 
-This will create a `wpcs` directory in your `projects` directory and it makes it esay to tell each project where the WordPress Coding Standards are stored because, remember, we'll be using Composer on a project-by-project basis.
+This will create a `wpcs` directory in your `projects` directory and it makes it easy to tell each project where the WordPress Coding Standards are stored because, remember, we'll be using Composer on a project-by-project basis.
 
 ## 5. Tell PHPCS About WPCS
 
