@@ -1,14 +1,16 @@
 # PHP CodeSniffer and WordPress Coding Standards with VS Code
 
-_Last Updated 2016-11-17 by @tommcfarlin_
+_Last Updated 2020-07-31 by @tommcfarlin_
 
 This guide is meant to provide all of the steps necessary to easily get up and running with PHP CodeSniffer, the WordPress Coding Standard ruleset, and Visual Studio Code.
 
-![Visual Studio Code](https://camo.githubusercontent.com/531b31da15d5925c915c6b6ceea25c55171aa139/687474703a2f2f642e70722f692f537344552b)
+![Visual Studio Code](https://tommcfarlin.com/wp-content/uploads/2020/07/visual-studio-code-974x1024.png)
 
 All of the resources used in this guide are linked at the bottom. This guide is also licensed [MIT](https://github.com/tommcfarlin/phpcs-wpcs-vscode/blob/master/LICENSE). If you'd like to contribute, then please feel free to open issues or issue pull requests. I'll be happy to merge them and also add your username to [CONTRIBUTING](https://github.com/tommcfarlin/phpcs-wpcs-vscode/blob/master/CONTRIBUTING.md).
 
-If you're looking for a corresponding blog post, please see [this page](https://tommcfarlin.com/php-codesniffer-in-visual-studio-code).
+If you're looking for corresponding blog posts, please see:
+1. [Setting Up PHP CodeSniffer in Visual Studio Code](https://tommcfarlin.com/php-codesniffer-in-visual-studio-code)
+2. [Setting Up PHP CodeSniffer Per Project](https://tommcfarlin.com/php-codesniffer-per-project/)
 
 As always, don't forget to checkout the [CHANGELOG](https://github.com/tommcfarlin/phpcs-wpcs-vscode/blob/master/CHANGELOG.md) to track everything that's changed since the initial release of this guide.
 
@@ -26,14 +28,14 @@ $ php -v
 And you should see something like this:
 
 ```
-PHP 5.6.25 (cli) (built: Sep  6 2016 16:37:16)
-Copyright (c) 1997-2016 The PHP Group
-Zend Engine v2.6.0, Copyright (c) 1998-2016 Zend Technologies
+PHP 7.4.7 (cli) (built: Jun 12 2020 00:04:10) ( NTS )
+Copyright (c) The PHP Group
+Zend Engine v3.4.0, Copyright (c) Zend Technologies
+    with Xdebug v2.9.6, Copyright (c) 2002-2020, by Derick Rethans
+    with Zend OPcache v7.4.7, Copyright (c), by Zend Technologies
 ```
 
-If you're looking for how to use a different version of PHP installed elsewhere on your system,
-this is not the guide for that. If, however, you're curious as to _where_ the version of PHP you're
-using is stored, you can enter:
+If you're looking for how to use a different version of PHP installed elsewhere on your system, this is not the guide for that. If, however, you're curious as to _where_ the version of PHP you're using is stored, you can enter:
 
 ```
 $ which php
@@ -42,15 +44,14 @@ $ which php
 And you should see something similar to this:
 
 ```
-/usr/bin/php
+/usr/local/bin/php
 ```
 
 That should give you enough information for the rest of this guide.
 
 ## 2. Installing Composer
 
-Installing Composer globally means that you'll be able to access it from anywhere on your system (that is, in any directory regardless of where you are). To do this, you can read the [manual](https://getcomposer.org/doc/00-intro.md) or follow the quick steps below (which summarize the
-manual, anyway):
+Installing Composer globally means that you'll be able to access it from anywhere on your system (that is, in any directory regardless of where you are). To do this, you can read the [manual](https://getcomposer.org/doc/00-intro.md) or follow the quick steps below (which summarize the manual, anyway):
 
 1. Grab [the latest snapshot](https://getcomposer.org/composer.phar) of Composer. Save it somewhere you'll remember.
 2. Move the file you just downloaded to the `/usr/local/bin/` directory on your machine.
@@ -84,16 +85,16 @@ For the purposes of this document, we're installing PHP CodeSniffer on a project
 From the integrated terminal within Visual Studio Code, enter the following command:
 
 ```
-$ composer require "squizlabs/php_codesniffer=2.*"
+$ composer require "squizlabs/php_codesniffer=3.*"
 ```
 
 This will create `composer.json`, tell it where to locate the PHP CodeSniffer, and install it in a `vendor` directory. Once this is done, we need the WordPress Coding Standard ruleset.
 
 ## 4. Installing the WordPress Coding Standards Rules
 
-I recommend placing the rules in a directory you can refer to often. Personally, I use a `projects` directory in my Dropbox directory to manage all of my work because it obviously provides backups automatically (and no, I don't recommend storing secure files there).
+I recommend placing the rules in a directory you can refer to often. Personally, I use a `projects` directory to manage all of my work.
 
-From within your directory of choice, say `dropbox/projects`, enter the following command in the terminal:
+From within your directory of choice, say `/projects`, enter the following command in the terminal:
 
 ```
 $ composer create-project wp-coding-standards/wpcs:dev-master --no-dev
@@ -121,8 +122,11 @@ Make sure the file looks like the following (though you may need to tweak based 
 // Place your settings in this file to overwrite the default settings
 {
     // PHPCS
-    "phpcs.enable":   true,
+    "phpcs.enable": true,
     "phpcs.standard": "WordPress",
+    "phpcs.executablePath": "./vendor/bin/phpcs",
+    "phpcs.showWarnings": true,
+    "phpcs.composerJsonPath": "composer.json",
 }
 ```
 
@@ -136,4 +140,5 @@ ___
 - [The Latest Composer Snapshot](https://getcomposer.org/composer.phar)
 - [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 - [WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)
-- [My corresponding blog post](https://tommcfarlin.com/php-codesniffer-in-visual-studio-code)
+- [Setting Up PHP CodeSniffer in Visual Studio Code](https://tommcfarlin.com/php-codesniffer-in-visual-studio-code)
+- [Setting Up PHP CodeSniffer Per Project](https://tommcfarlin.com/php-codesniffer-per-project/)
